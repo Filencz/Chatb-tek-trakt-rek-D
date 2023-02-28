@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      #chat {
+        height: 100%;
+        border: 1px solid #ccc;
+        overflow: auto;
+        padding: 10px;
+      }
+      #userBox {
+        width: 240px;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+      }
+      #sendBtn {
+        padding: 5px 10px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+	<link rel="icon" type="image/x-icon" href="Logo.ico">
+  </head>
+  <body>
+    <h1>Chat</h1>
+    <div id="chat"></div>
+    <input id="userBox" type="text" placeholder="Napište něco..." onkeydown="if (event.keyCode == 13) { talk() }">
+    <button id="sendBtn" onclick="talk()">Odeslat</button>
+    <script>
+      var know = {
+        "Ahoj" : "Čauky.",
+        "ahoj" : "Čauky.",
+		 "Ahoj." : "Čauky.",
+        "ahoj." : "Čauky.",
+        "Jak se máš" : "Dobře jak ty?",
+		"jak se máš" : "Dobře jak ty?",
+		"Jak se máš?" : "Dobře jak ty?",
+		"jak se máš?" : "Dobře jak ty?",
+		"Dobře" : "To je dobře. 🙂",
+		"dobře" : "To je dobře. 🙂",
+		"Dobře." : "To je dobře. 🙂",
+		"dobře." : "To je dobře. 🙂",
+		"Jsi pepega?" : "Zatím ano 😅 ale česem se to může změnit. 😉",
+		"jsi pepega?" : "Zatím ano 😅 ale česem se to může změnit. 😉",
+		"Jsi pepega" : "Zatím ano 😅 ale česem se to může změnit. 😉",
+		"jsi pepega" : "Zatím ano 😅 ale česem se to může změnit. 😉",
+		"Co umíš" : "Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"Co umíš?" : "Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"co umíš" : "Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"co umíš?" : "Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"Umíš něco?" : "Ano. Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"umíš něco?" : "Ano. Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"Umíš něco" : "Ano. Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"umíš něco" : "Ano. Umím odpovídat na jednoduché otázky a pokud vám u mě něco chybí Přidejte otázku zde:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"Jak se jmenuješ?" : "No, Můj vývojář vymyslel strašně originální jméno (Chatbůtek traktůrek) ale oficiálně se jmenuji jenom Chatbot 😁 ale klidně mi můžeš vymyslet jméno na:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"jak se jmenuješ?" : "No, Můj vývojář vymyslel strašně originální jméno (Chatbůtek traktůrek) ale oficiálně se jmenuji jenom Chatbot 😁 ale klidně mi můžeš vymyslet jméno na:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"Jak se jmenuješ" : "No, Můj vývojář vymyslel strašně originální jméno (Chatbůtek traktůrek) ale oficiálně se jmenuji jenom Chatbot 😁 ale klidně mi můžeš vymyslet jméno na:https://forms.gle/hJgpWhzjJpP9jJu19",
+		"jak se jmenuješ" : "No, Můj vývojář vymyslel strašně originální jméno (Chatbůtek traktůrek) ale oficiálně se jmenuji jenom Chatbot 😁 ale klidně mi můžeš vymyslet jméno na:https://forms.gle/hJgpWhzjJpP9jJu19"
+		};
+      function talk() {
+        var user = document.getElementById("userBox").value;
+        document.getElementById("userBox").value = "";
+        var chatLog = document.getElementById("chat");
+        chatLog.innerHTML += "<strong>Ty: </strong>" + user + "<br>";
+        if (user in know) {
+          chatLog.innerHTML += "<strong>Chatbot: </strong>" + know[user] + "<br>";
+        } else {
+          chatLog.innerHTML += "<strong>Chatbot: </strong>Omlouvám se ale tomu nerozumím...<br>";
+        }
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }
+	  function talk() {
+  var user = document.getElementById("userBox").value.trim();
+  document.getElementById("userBox").value = "";
+  if (user !== '') {
+    var chatLog = document.getElementById("chat");
+    chatLog.innerHTML += "<strong>Ty: </strong>" + user + "<br>";
+    if (user in know) {
+      chatLog.innerHTML += "<strong>Chatbot: </strong>" + know[user] + "<br>";
+    } else {
+      chatLog.innerHTML += "<strong>Chatbot: </strong>Omlouvám se ale tomu nerozumím...<br>";
+    }
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+}
+
+    </script>
+  </body>
+</html>
